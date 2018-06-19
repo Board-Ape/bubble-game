@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dot Game</title>
+    <link rel="stylesheet" type="text/css" href="../public/style.css">
+</head>
+<body>
+  <div id="scoreAndSpeedWrapper" class="scoreAndSpeedWrapper">
+    <p id="scoreboard" class="scoreboard">
+      Score:
+      <span id="score">0</span>
+    </p>
+    <input id="speedInput" type="range" min="10" max="100" oninput="updateSpeed()">
+    <p class="speedSliderLabel">
+      Speed:
+      <span id="speedDisplay">55</span>
+    </p>
+  </div>
+  <div id="playArea" class="playArea">
+    Play Area
+  </div>
+  <script src="../public/index.js"></script>
+</body>
+</html>

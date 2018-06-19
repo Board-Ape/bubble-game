@@ -1,0 +1,30 @@
+html, body {
+  margin: 0;
+}
+
+.dot {
+  border-radius: 999px;
+  border: 1px solid black;
+  min-width: 10px;
+  min-height: 10px;
+  max-width: 100px;
+  max-height: 100px;
+  position: absolute;
+}
+
+.scoreAndSpeedWrapper {
+  border-bottom: 1px solid black;
+  padding: 5px;
+  text-align: center;
+}
+
+.speedSliderLabel {
+  margin: 0 0 5px 0;
+}
+
+.playArea {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  border: 1px black solid;
+}
