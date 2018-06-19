@@ -1,6 +1,6 @@
-var fallSpeed = 55; // Mid speed as default
-var fallEvent = document.createEvent("Event");
-fallEvent.initEvent("fall", false, false);
+let fallSpeed = 55; // Mid speed as default
+const fallEvent = document.createEvent("Event");
+fallEvent.initEvent("fall", false, false); // Deprecated
 
 function updateSpeed() {
   fallSpeed = parseInt(document.getElementById("speedInput").value);
@@ -8,32 +8,32 @@ function updateSpeed() {
 }
 
 window.onload = function() {
-  var playArea = document.getElementById("playArea");
-  var scoreElem = document.getElementById("score");
-  var score = 0;
-  var width = playArea.clientWidth;
-  var playAreaHeight = window.innerHeight - document.getElementById("scoreAndSpeedWrapper").offsetHeight;
-  var pixel = "px";
+  const playArea = document.getElementById("playArea");
+  const scoreElem = document.getElementById("score");
+  let score = 0;
+  const width = playArea.clientWidth;
+  const playAreaHeight = window.innerHeight - document.getElementById("scoreAndSpeedWrapper").offsetHeight;
+  const pixel = "px";
 
   var createDot = function() {
     playArea.appendChild((new Dot(Math.random() * 50)).dotElement);
   }
 
   function updateScore(addedScore) {
-    score = score + addedScore;
+    score += addedScore;
     scoreElem.textContent = score;
   }
 
-  var fallEventFirer = function() {
-    var dots = playArea.children;
-    for( var i = 0; i < dots.length; i++)
+  const fallEventFirer = function() {
+    let dots = playArea.children;
+    for( let i = 0; i < dots.length; i++)
     {
       dots[i].dispatchEvent(fallEvent);
     }
   }
 
-  var fallEventHandler = function(e) {
-    var newPos = this.offsetTop + fallSpeed;
+  const fallEventHandler = function(e) {
+    let newPos = this.offsetTop + fallSpeed;
       if (newPos + this.offsetHeight > playAreaHeight) {
         playArea.removeChild(this);
       } else {
@@ -41,7 +41,7 @@ window.onload = function() {
       }
   }
 
-  var dotClickHandler = function(e) {
+  const dotClickHandler = function(e) {
     updateScore(Math.floor(100/this.offsetHeight))
     playArea.removeChild(this);
     setTimeout(createDot, 1000);
@@ -50,11 +50,9 @@ window.onload = function() {
   // Represents a dot
   function Dot(radius) {
     // minimum size 10px, maximum size 100px (diameter)
-    if (radius < 5) {
-      radius = 10;
-    } else if  (radius > 50) {
-      radius = 50;
-    }
+    if (radius < 5) radius = 5;
+    else if (radius > 50) radius = 50;
+
     var diameter = radius*2
     var maxPosX = width - radius;
 
