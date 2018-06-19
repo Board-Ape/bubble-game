@@ -2,6 +2,10 @@ let fallSpeed = 55; // Mid speed as default
 const fallEvent = document.createEvent("Event");
 fallEvent.initEvent("fall", false, false); // Deprecated
 
+function refreshPage() {
+    window.location.reload();
+}
+
 function updateSpeed() {
   fallSpeed = parseInt(document.getElementById("speedInput").value);
   document.getElementById("speedDisplay").textContent = fallSpeed;
@@ -15,7 +19,7 @@ window.onload = function() {
   const playAreaHeight = window.innerHeight - document.getElementById("scoreAndSpeedWrapper").offsetHeight;
   const pixel = "px";
 
-  var createDot = function() {
+  const createDot = () => {
     playArea.appendChild((new Dot(Math.random() * 50)).dotElement);
   }
 
@@ -33,7 +37,7 @@ window.onload = function() {
   }
 
   const fallEventHandler = function(e) {
-    let newPos = this.offsetTop + fallSpeed;
+    let newPos = this.offsetTop + fallSpeed/(Math.sqrt(fallSpeed));
       if (newPos + this.offsetHeight > playAreaHeight) {
         playArea.removeChild(this);
       } else {
@@ -50,17 +54,14 @@ window.onload = function() {
   // Represents a dot
   function Dot(radius) {
     // minimum size 10px, maximum size 100px (diameter)
-    if (radius < 5) radius = 5;
-    else if (radius > 50) radius = 50;
+    radius < 5 ? radius = 5 : radius > 50 ? radius = 50 : radius;
 
     var diameter = radius*2
     var maxPosX = width - radius;
-
     // Dot Properties
     var diameter = diameter;
     var xPos = Math.floor(Math.random() * (maxPosX-radius));
     var yPos = 0;
-
 
     // Create the actual element
     this.dotElement = document.createElement("div");
@@ -77,6 +78,6 @@ window.onload = function() {
   setInterval(createDot, 1000);
   setTimeout(function() {
     fallEventFirer();
-    setInterval(fallEventFirer, 1000);
+    setInterval(fallEventFirer, 60);
   }, 500);
 };

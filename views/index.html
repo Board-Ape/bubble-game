@@ -3,22 +3,28 @@
 <head>
     <title>Dot Game</title>
     <link rel="stylesheet" type="text/css" href="../public/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
 </head>
 <body>
-  <div id="scoreAndSpeedWrapper" class="scoreAndSpeedWrapper">
-    <p id="scoreboard" class="scoreboard">
-      Score:
-      <span id="score">0</span>
-    </p>
+  <header id="scoreAndSpeedWrapper" class="scoreAndSpeedWrapper">
+    <section class="scoreRestartContainer">
+      <p id="scoreboard" class="scoreboard">
+        Score:
+        <span id="score" class="score">0</span>
+      </p>
+      <button class="restartButton" type="button" onClick="refreshPage()">Restart</button>
+    </section>
+    <h1 class="gameTitle">Bubble Pop</h1>
     <input id="speedInput" type="range" min="10" max="100" oninput="updateSpeed()">
     <p class="speedSliderLabel">
       Speed:
-      <span id="speedDisplay">55</span>
+      <span id="speedDisplay" class="speedDisplay">55</span>
     </p>
-  </div>
-  <div id="playArea" class="playArea">
-    Play Area
-  </div>
+  </header>
+  <article id="playContainer" class="playContainer">
+    <div id="playArea" class="playArea">
+    </div>
+  </article>
   <script src="../public/index.js"></script>
 </body>
 </html>
